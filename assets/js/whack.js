@@ -36,13 +36,6 @@
     leaders();
     konamiCode();
     
-    // Hide some elements that are only shown when game is over
-    // $('#play-again').hide();
-    // $('#exit-game').hide();
-    // $('#leader-board').hide();
-    // $('#end-image').hide();
-    // inputScore.hide();
-    
     // Hover event for employees
     employee.hover(function(){
         $(this).css('border', '5px solid green').css('cursor', 'pointer');
@@ -202,5 +195,5 @@
       		$('#leader-board').show();
       		$('#end-image').show();
       		$('#counter').hide();
-    	}, 5000);
+    	}, 25000);
     }
