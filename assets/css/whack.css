@@ -2,58 +2,82 @@ body {
 	text-align: center;
 	background-image: url(/img/spongebob-background2.jpg);
 	background-size: cover;
+	font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-h1 {
-	font-family: 'Joti One', cursive;
-	font-size: 56px;
-	color: rgba(255, 0, 125, 0.8);
-	border-radius: 100px;
-	text-shadow: 5px -2px 1px #330;	
-	margin-top: 10px;
+img.logo  {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
 }
-
+a:hover,
+a:focus {
+	color: #fff;
+	text-decoration: none;
+}
 .clickable {
 	cursor: pointer;
 }
 
 #game-board {
 	margin: 10px auto;
-	width: 456px;
+	width: 100%;
+	max-width: 600px;
 }
 
 .square {
-	border: 1px solid #000;
+	background: #f5f5f5;
 	float: left;
-	height: 150px;
-	width: 150px;
+	height: 180px;
+	width: 31.3%;
+	margin: 1%;
+	overflow: hidden;
 }
-
+.square img {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
 .choice {
-    width: 85%;
-    margin: 0 auto 20px;
+    width: 100%;
+    height: auto;
 }
-
+.choice h2 {
+	font-size: 1.2em;
+}
+.employee-wrap {
+	width: 31.3%;
+	height: auto;
+	float: left;
+	margin: 1%;
+}
 .employee {
-    border: 5px solid transparent;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    opacity: 1;
+}
+.fade {
+	opacity: .6;
 }
 .whack-bob {
-	height: 146px;
-	width: 146px;
 	display: none;
 }
-
 #start-button {	
 	margin-top: 20px;
-	height: 50px;
-	width: 180px;
 	font-size: 20px;
-	background-color: #FFF;
 }
 
-#score {
-	font-size: 30px;
-	margin-top: 10px;
+.score, .counter {
+    font-size: 30px;
+    margin-top: 10px;
+    color: #fff;
+    border: 1px solid #fff;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-top: 25px;
 }
 
 #high-score {
@@ -83,4 +107,152 @@ h1 {
 }
 #play-again, #end-image, #leader-board, #exit-game, #input-score {
 	display: none;
+}
+.pre-header {
+	background: #D32F2F;
+	height: 15px;
+	width: 100%;
+	float: left;
+}
+.header {
+	width: 100%;
+	height: auto;
+	float: left;
+}
+.lower-bar {
+	background: #F44336;
+}
+.lower-bar h1 {
+	font-size: 1.5em;
+	font-weight: 700;
+	letter-spacing: 1px;
+	text-align: left;
+	color: #fff;
+	width: 100%;
+}
+/*This is our main wrapping element, it's made 100vh high to ensure it is always the correct size and then moved into place and padded with negative margin and padding*/
+.flex-container {
+    display: flex;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+    width: 100%;
+    backface-visibility: hidden;
+    will-change: overflow;
+}
+.flex-container.top-bar  {
+    height: 15px;
+}
+.header .flex-container {
+    height: auto;
+}
+
+/*All the scrollable sections should overflow and be whatever height they need to be. As they are flex-items (due to being inside a flex container) they could be made to stretch full height at all times if needed.
+WebKit inertia scrolling is being added here for any present/future devices that are able to make use of it.
+*/
+.Left,
+.Middle,
+.Right {
+    overflow: auto;
+    height: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+}
+/*Entirely optional – just wanted to remove the scrollbar on WebKit browsers as I find them ugly*/
+.Left::-webkit-scrollbar,
+.Middle::-webkit-scrollbar,
+.Right::-webkit-scrollbar {
+    display: none;
+}
+/*  Left and Right are set sizes while the Middle is set to flex one so it occupies all remaining space. This could be set as a width too if prefereable, perhaps using calc.*/
+.Left {
+    width: 35.5rem;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    z-index: 1;
+  padding: 1.5em;
+}
+.main-section .Left {
+	background: #f5f5f5;
+}
+.Right {
+    flex: 1;
+}
+.Right h2 {
+	font-size: 1.6em;
+}
+@media screen and (min-width:1300px) {
+.Right {
+    padding: 1.5em;
+}
+.Left {
+  width: 30%;
+}
+.page-title.flex-container h1 {
+    padding: 2.5em 1em .3em 6.8em;
+}
+}
+@media screen and (max-width:1080px) {
+.Left {
+  width: 30%;
+  padding: 1em;
+}
+.employee-wrap {
+	width: 48%;
+	margin: 2% 1%;
+}
+}
+.Right img {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+}
+.Right .aligncenter, .Right div.aligncenter,
+.Right .alignleft, .Right div.alignleft,
+.Right .alignright, .Right div.alignright,
+.Right .alignnone, .Right div.alignnone {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+}
+@media screen and (max-width:768px) {
+	.Left.lower-bar .valign {
+		width: 100%;
+	}
+	img.logo {
+		margin: 0 auto;
+		display: block;
+		max-width: 350px;
+	}
+.flex-container.main-section {
+	display: block;
+    height: auto;
+}
+.Left {
+  width: 100%;
+  padding: 1em;
+  float: left;
+  height: auto;
+}
+.Right {
+	display: block;
+	float: left;
+	width: 100%;
+}
+.employee-wrap {
+	width: 23%;
+	margin: 1%;
+}
+.score, .counter {
+	color: #444;
+}
+}
+@media screen and (max-width:530px) {
+	.square {
+		height: 150px;
+	}
+}
+@media screen and (max-width:420px) {
+	.square {
+		height: 110px;
+	}
 }

@@ -38,9 +38,14 @@
     
     // Hover event for employees
     employee.hover(function(){
-        $(this).css('border', '5px solid green').css('cursor', 'pointer');
+        $(this).css('opacity', '.4').css('cursor', 'pointer');
         }, function(){
-        $(this).css('border', '5px solid transparent');
+            if ($(this).hasClass('fade')){
+                
+            $(this).css('opacity', '.4');
+        } else {
+            $(this).css('opacity', '1');
+        }
     });
     
     // Click event for selecting employees
@@ -65,7 +70,7 @@
     // Adds the selection to employees array and fades it out
     function selectEmployee(selection) {
         employees.push(selection.attr('src'));
-        selection.fadeOut(700);
+        selection.addClass('fade');
     }
     
     // Returns random index from provided array
@@ -111,14 +116,14 @@
             }
     		$(this).hide();
     		laugh.play();
-    		$('#score').text('Your Score: ' + score);
+    		$('.score').text('Your Score: ' + score);
     	});
     }
     
     // The timer for the game. Starts at 25 seconds and counts down
     function timer() {
         counter--;    
-        $('#counter').text('Time: ' + counter);
+        $('.counter').text('Time: ' + counter);
     }
     
     function konamiCode(){
@@ -146,11 +151,11 @@
             dataType: 'json',
             method: 'POST'
         }).done(function(data) {
-            
+            leaderBoard_html = '<table class="striped"><thead><tr><th data-field="id">Name</th><th data-field="name">Score</th></tr></thead><tbody>'
             for ( var i = 0; i < data.length; i++ ) {
-                leaderBoard_html += '<p>' +data[i]['name']+ ' : ' +data[i]['score']+ '</p>';    
+                leaderBoard_html += '<tr><td>' +data[i]['name']+ '</td><td>' +data[i]['score']+ '</tr></td>';    
             }
-            
+            leaderBoard_html += '</tbody></table>';
             leaderBoard.html(leaderBoard_html);
         });
     }
@@ -169,9 +174,11 @@
             method: 'POST'
   	    }).done(function(data){
   	        leaderBoard_html = '<h2>Leader Board</h2>';
+  	        leaderBoard_html += '<table class="striped"><thead><tr><th data-field="id">Name</th><th data-field="name">Score</th></tr></thead><tbody>';
   	        for ( var i = 0; i < data.length; i++ ) {
-                leaderBoard_html += '<p>' +data[i]['name']+ ' : ' +data[i]['score']+ '</p>';    
+                leaderBoard_html += '<tr><td>' +data[i]['name']+ '</td><td>' +data[i]['score']+ '</tr></td>';   
             }
+            leaderBoard_html += '</tbody></table>'; 
             leaderBoard.html(leaderBoard_html);
   	    });
     }
@@ -194,6 +201,6 @@
       		$('#exit-game').show();
       		$('#leader-board').show();
       		$('#end-image').show();
-      		$('#counter').hide();
-    	}, 25000);
+      		$('.counter').hide();
+    	}, 13000);
     }
